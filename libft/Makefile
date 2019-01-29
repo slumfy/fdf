@@ -6,7 +6,7 @@
 #    By: rvalenti <rvalenti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 04:03:35 by rvalenti          #+#    #+#              #
-#    Updated: 2018/11/11 05:11:31 by rvalenti         ###   ########.fr        #
+#    Updated: 2019/01/29 16:28:06 by rvalenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ SRC = 	ft_bzero.c\
 		ft_nbrlen.c\
 		ft_countword.c\
 		ft_freetab.c\
+		get_next_line.c\
 
 OBJ = $(SRC:.c=.o)
 
