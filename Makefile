@@ -16,13 +16,14 @@ SRC = main.c
 LIBFT = ./libft/
 CC = gcc -Wall -Werror -Wextra
 INCLUDES = ./
+MINILIB = -I ../minilibx_macos -L ../minilibx_macos -lmlx -framework opengl -framework AppKit
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT)
-	$(CC) $(OBJ) -o$(NAME) -I$(LIBFT) -I$(INCLUDES) -L $(LIBFT) -lft
+	$(CC) $(OBJ) -o$(NAME) -I$(LIBFT) -I$(INCLUDES) -L $(LIBFT) -lft $(MINILIB)
 clean:
 	rm -rf $(OBJ)
 	make clean -C $(LIBFT)

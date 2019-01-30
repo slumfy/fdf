@@ -14,6 +14,12 @@
 
 int		main(int ac, char **av)
 {
+	void *win;
+	void *mlx;
+
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 500, 500, "mlx");
+	mlx_loop(mlx);
 	(void)ac;
 	(void)av;
 	return(0);

@@ -11,11 +11,14 @@
 /* ************************************************************************** */
 
 #ifndef FDF_H
+# define FDF_H
 
 # include <stdlib.h>
+# include <math.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdio.h>
+#include "../minilibx_macos/mlx.h"
 
 #endif
