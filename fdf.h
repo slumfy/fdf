@@ -12,7 +12,10 @@
 
 #ifndef FDF_H
 # define FDF_H
+# define LENGTH 1080
+# define HEIGHT 720
 
+# include "libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
 # include <sys/types.h>
