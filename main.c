@@ -24,25 +24,16 @@ int	keylog(int key, void *param)
 
 int		main(int ac, char **av)
 {
-	void *win;
-	void *mlx;
-	int x;
-	int y;
+	t_data data;
 
-	x = 0;
-	y = 0;
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, LENGTH, HEIGHT, "mlx");
-	while (x <= LENGTH && y <= HEIGHT)
-	{
-	mlx_pixel_put(mlx, win, x, y, 0xFFFFFF);
-	x++;
-	if (x % 3)
-		y++;
-	}
-	mlx_key_hook(win, keylog, (void *)0);
-	mlx_loop(mlx);
-	(void)ac;
-	(void)av;
+	if (ac < 2)
+		return(0);
+	if(!(parse_map(av[1], &data)))
+		return (0);
+	printf("xmax=%d\tymax=%d", data.x_max, data.y_max);
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, LENGTH, HEIGHT, av[1]);
+	mlx_key_hook(data.win, keylog, (void *)0);
+	mlx_loop(data.mlx);
 	return(0);
 }

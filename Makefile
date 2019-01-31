@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME = FDF
-SRC = main.c
+SRC =	main.c\
+	parse_map.c\
 
 LIBFT = ./libft/
 CC = gcc -Wall -Werror -Wextra
