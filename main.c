@@ -39,10 +39,7 @@ int		main(int ac, char **av)
 	printf_map(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, LENGTH, HEIGHT, av[1]);
-	bresenham(&data, 0, 720, 540, 360);
-	bresenham(&data, 0, 0, 540, 360);
-	bresenham(&data, 1080,0, 540, 360);
-	bresenham(&data, 1080, 720, 540, 360);
+	draw_map(&data, 0, 0, 100);
 	mlx_hook(data.win, 2, 0, key_press, (void *)0);
 	mlx_hook(data.win, 17, 0, close_button, (void *)0);
 	mlx_loop(data.mlx);

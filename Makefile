@@ -17,6 +17,7 @@ SRC =	main.c\
 	ft_list_pushback.c\
 	ft_create_elem.c\
 	bresenham.c\
+	draw_map.c\
 
 LIBFT = ./libft/
 CC = gcc -Wall -Werror -Wextra -fsanitize=address -g
