@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/05 02:39:56 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/05 03:14:51 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@ int	parse_map(char *s, t_data *data)
 		data->x_max = ft_countword(line, ' ');
 		data->y_max++;
 	}
-	free(line);
 	close(fd);
-	if(!(data->map = (int **)malloc(sizeof(int *) * data->y_max)))
-		return(0);
-	while (i <= data->y_max)
-	{
-		if(!(data->map[i] = (int *)malloc(sizeof(int) * data->x_max)))
-			return(0);
-		i++;
-	}
 	return(1);
 }
