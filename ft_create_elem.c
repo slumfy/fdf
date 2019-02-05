@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 21:30:31 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/05 03:05:46 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/05 04:13:07 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_lst	*ft_create_elem(char *data, size_t len)
 {
 	t_lst	*new;
 
-	printf("data=%s\n", data);
 	if (!(new = (t_lst*)ft_memalloc(sizeof(t_lst))))
 		exit(0);
 	new->data = data;

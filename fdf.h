@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:15:30 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/05 02:39:44 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/05 03:52:57 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ typedef struct s_data
 
 
 int		parse_map(char *s, t_data *data);
+int		get_map(t_data *data);
+int		fill_map(t_data *data);
+
 int		key_press(int key, void *param);
 int		close_button(void *param);
-void	printf_map(t_data *data);
+
 void	ft_list_pushback(t_lst **begin_list, char *line);
 t_lst  *ft_create_elem(char *data, size_t len);
+
+void	printf_map(t_data *data);
 #endif

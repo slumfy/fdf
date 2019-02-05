@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:41:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/05 02:58:37 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/05 04:12:22 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 void	printf_map(t_data *data)
 {
-	//int n;
-	//int y;
+	int x = 0;
 	t_lst *tmp;
-	int n = 0;
+	int y = 0;
 
 	tmp = data->list;
-	//n = 0;
-	//	y = 0;
 	printf("xmax=%d\tymax=%d\n", data->x_max, data->y_max);
 	while(tmp)
 	{
-		printf("%d\tdata= %s\n",n,tmp->data);
-		n++;
+		printf("%d\tdata= %s\n",x,tmp->data);
+		x++;
 		tmp = tmp->next;
 	}
-	/*while (n < data->y_max)
-	  {
-	  printf("n=%d\n", n);
-	  while (y < data->x_max)
-	  {
-	  printf("%d ", data->map[n][y]);
-	  y++;
-	  }
-	  printf("\n");
-	  n++;
-	  }*/
+	x = 0;
+	printf("map: x=%d y= %d\n", data->x_max, data->y_max);
+	while (y < data->y_max)
+	{
+		x = 0;
+		printf("\t");
+		while (x < data->x_max)
+		{
+			printf("%d ", data->map[y][x]);
+			x++;
+		}
+		y++;
+		printf("\n");
+	}
 }
