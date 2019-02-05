@@ -6,7 +6,7 @@
 #    By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 16:07:40 by rvalenti          #+#    #+#              #
-#    Updated: 2019/02/05 03:12:03 by rvalenti         ###   ########.fr        #
+#    Updated: 2019/02/05 04:48:03 by rvalenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC =	main.c\
 	print_map.c\
 	ft_list_pushback.c\
 	ft_create_elem.c\
+	bresenham.c\
 
 LIBFT = ./libft/
 CC = gcc -Wall -Werror -Wextra
