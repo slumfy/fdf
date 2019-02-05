@@ -22,7 +22,7 @@ void	bresenham(t_data *data, int x0, int y0, int x1, int y1)
 
 	deltx = x1 - x0;
 	delty = y1 - y0;
-	deltr = (double)delty / (double)deltx;
+	deltr = fabs((double)delty / (double)deltx);
 	y = y0;
 	error = 0.0;
 	printf("deltx=%d delty=%d deltr= %lf\n",deltx, delty, deltr);

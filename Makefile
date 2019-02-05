@@ -19,7 +19,7 @@ SRC =	main.c\
 	bresenham.c\
 
 LIBFT = ./libft/
-CC = gcc -Wall -Werror -Wextra
+CC = gcc -Wall -Werror -Wextra -fsanitize=address -g
 INCLUDES = ./
 MINILIB = -I ../minilibx_macos -L ../minilibx_macos -lmlx -framework opengl -framework AppKit
 OBJ = $(SRC:.c=.o)

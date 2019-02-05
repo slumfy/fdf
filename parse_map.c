@@ -40,7 +40,7 @@ int	get_map(t_data *data)
 	i = 0;
 	if (!(tab = (int **)malloc(sizeof(int *) * data->y_max)))
 		return (0);
-	while (i <= data->y_max)
+	while (i < data->y_max)
 	{
 		if (!(tab[i] = (int *)malloc(sizeof(int) * data->x_max)))
 			return (0);
@@ -65,7 +65,7 @@ int	fill_map(t_data *data)
 	i = 0;
 		if(!(split = ft_strsplit(tmp->data, ' ')))
 			return (0);
-		while (split[i])
+		while (i < data->x_max)
 		{
 			data->map[x][i] = ft_atoi(split[i]);
 			i++;
