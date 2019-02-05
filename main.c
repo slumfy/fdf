@@ -6,13 +6,13 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/01/29 16:18:16 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/05 02:53:11 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	keylog(int key, void *param)
+int	key_press(int key, void *param)
 {
 	(void)param;
 	if (key == 53)
@@ -21,6 +21,12 @@ int	keylog(int key, void *param)
 	return(0);
 }
 
+int	close_button(void *param)
+{
+	(void)param;
+	exit(0);
+	return (0);
+}
 
 int		main(int ac, char **av)
 {
@@ -30,10 +36,11 @@ int		main(int ac, char **av)
 		return(0);
 	if(!(parse_map(av[1], &data)))
 		return (0);
-	printf("xmax=%d\tymax=%d", data.x_max, data.y_max);
+	printf_map(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, LENGTH, HEIGHT, av[1]);
-	mlx_key_hook(data.win, keylog, (void *)0);
+	mlx_hook(data.win, 2, 0, key_press, (void *)0);
+	mlx_hook(data.win, 17, 0, close_button, (void *)0);
 	mlx_loop(data.mlx);
 	return(0);
 }

@@ -6,13 +6,16 @@
 #    By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 16:07:40 by rvalenti          #+#    #+#              #
-#    Updated: 2019/01/29 16:23:05 by rvalenti         ###   ########.fr        #
+#    Updated: 2019/02/05 02:22:54 by rvalenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = FDF
 SRC =	main.c\
 	parse_map.c\
+	print_map.c\
+	ft_list_pushback.c\
+	ft_create_elem.c\
 
 LIBFT = ./libft/
 CC = gcc -Wall -Werror -Wextra
