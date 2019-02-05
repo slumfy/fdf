@@ -26,15 +26,16 @@ void	bresenham(t_data *data, int x0, int y0, int x1, int y1)
 	y = y0;
 	error = 0.0;
 	printf("deltx=%d delty=%d deltr= %lf\n",deltx, delty, deltr);
-	while (x0 != x1)
+	while (x0 != x1 || y != y1)
 	{
 		mlx_pixel_put(data->mlx, data->win, x0, y, 0xFFFFFF);
 		error += deltr;
 		if (error >= 0.5)
 		{
-		y = y + (delty >= 0 ? 1 : -1);
-		error -= 1.0;
+			y = y + (delty >= 0 ? 1 : -1);
+			error -= 1.0;
 		}
-		x0 += deltx >= 0 ? 1 : -1;
+		if (x0 != x1)
+			x0 += deltx >= 0 ? 1 : -1;
 	}
 }
