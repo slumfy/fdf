@@ -63,6 +63,7 @@ void	bresenham(t_data *data, int x0, int y0, int x1, int y1);
 void	bresenham_blue(t_data *data, int x0, int y0, int x1, int y1);
 void	draw_map(t_data *data, int larg, int haut);
 int		iso(t_data *data, int x, int y,int x1, int y1, int gap);
+int		test_iso(t_data *data, int x, int y,int x1, int y1, int gap);
 
 void	ft_list_pushback(t_lst **begin_list, char *line);
 t_lst  *ft_create_elem(char *data, size_t len);
