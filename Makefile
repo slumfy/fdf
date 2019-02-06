@@ -6,11 +6,11 @@
 #    By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 16:07:40 by rvalenti          #+#    #+#              #
-#    Updated: 2019/02/05 04:48:03 by rvalenti         ###   ########.fr        #
+#    Updated: 2019/02/07 00:15:39 by rvalenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FDF
+NAME = fdf
 SRC =	main.c\
 	parse_map.c\
 	print_map.c\
