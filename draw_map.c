@@ -54,10 +54,10 @@ int		iso(t_data *data, int x, int y,int x1, int y1, int gap)
 int		test_iso(t_data *data, int x, int y,int x1, int y1, int gap)
 {
 	(void)gap;
-	data->point.x = ((x - y) * cos(0.523599)) *gap / 2;
-	data->point.y = (-data->map[y][x] + (x + y) * sin(0.523599)) *gap / 2;
-	data->point.x1 = ((x1 - y1) * cos(0.523599)) *gap / 2;
-	data->point.y1 = (-data->map[y1][x1] + (x1 + y1) * sin(0.523599)) *gap / 2;
+	data->point.x = ((x - y) * cos(0.523599)) * gap / 2;
+	data->point.y = (-data->map[y][x] + (x + y) * sin(0.523599)) * gap / 2;
+	data->point.x1 = ((x1 - y1) * cos(0.523599)) * gap / 2;
+	data->point.y1 = (-data->map[y1][x1] + (x1 + y1) * sin(0.523599)) * gap / 2;
 	if ((data->map[y1][x1] || data->map[y][x])
 			&& data->map[y1][x1] == data->map[y][x])
 		return (1);
