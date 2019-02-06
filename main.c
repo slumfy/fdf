@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/06 01:59:01 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/06 04:39:32 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		main(int ac, char **av)
 	printf_map(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, LENGTH, HEIGHT, av[1]);
-	draw_map(&data, 30);
+	draw_map(&data, 800, 300);
 	mlx_hook(data.win, 2, 0, key_press, (void *)0);
 	mlx_hook(data.win, 17, 0, close_button, (void *)0);
 	mlx_loop(data.mlx);

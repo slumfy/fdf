@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:15:30 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/06 02:00:14 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/06 04:39:34 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 typedef struct s_point
 {
 	int		x;
+	int		x1;
 	int		y;
+	int		y1;
 }			t_point;
 
 typedef struct	s_lst
@@ -58,8 +60,9 @@ int		fill_map(t_data *data);
 int		key_press(int key, void *param);
 int		close_button(void *param);
 void	bresenham(t_data *data, int x0, int y0, int x1, int y1);
-void	draw_map(t_data *data, int gap);
-void	iso(t_data *data,int x,int y, int gap);
+void	bresenham_blue(t_data *data, int x0, int y0, int x1, int y1);
+void	draw_map(t_data *data, int larg, int haut);
+int		iso(t_data *data, int x, int y,int x1, int y1, int gap);
 
 void	ft_list_pushback(t_lst **begin_list, char *line);
 t_lst  *ft_create_elem(char *data, size_t len);

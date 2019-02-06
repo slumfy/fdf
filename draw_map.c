@@ -1,26 +1,37 @@
 #include "fdf.h"
 
-void	draw_map(t_data *data, int gap)
+void	draw_map(t_data *data, int larg, int haut)
 {
 	int	x;
 	int y;
 
 	x = 0;
 	y = 0;
-	while (y <= data->y_max)
+	while (y < data->y_max)
 	{
 		x = 0;
-		while (x <= data->x_max)
+
+		while (x < data->x_max)
 		{
-			if (x + 1 <= data->x_max)
+			if (x + 1 < data->x_max)
 			{
-				iso(data, x ,y, gap);
-				bresenham(data, (data->point.x + 1) * gap , (data->point.y + 1) * gap , (data->point.x + 2) * gap , (data->point.y + 1) * gap);
+				if(!iso(data, x ,y, x + 1, y, 40))
+					bresenham(data, data->point.x + larg , data->point.y + haut,
+							data->point.x1 + larg , data->point.y1 + haut);
+				else
+					bresenham_blue(data, data->point.x + larg , data->point.y + haut,
+							data->point.x1 + larg , data->point.y1 + haut);
+
 			}
-			if (y + 1 <= data->y_max)
+			if (y + 1 < data->y_max)
 			{
-				iso(data, x ,y, gap);
-				bresenham(data, (data->point.x + 1) * gap , (data->point.y + 1) * gap , (data->point.x + 1) * gap , (data->point.y + 2) * gap);
+				if(!iso(data, x ,y, x, y + 1, 40))
+					bresenham(data, data->point.x + larg, data->point.y + haut,
+							data->point.x1 + larg, data->point.y1 + haut);
+				else
+					bresenham_blue(data, data->point.x + larg, data->point.y + haut,
+							data->point.x1 + larg, data->point.y1 + haut);
+
 			}
 			x++;
 		}
@@ -28,8 +39,14 @@ void	draw_map(t_data *data, int gap)
 	}
 }
 
-void	iso(t_data *data, int x, int y, int gap)
+int		iso(t_data *data, int x, int y,int x1, int y1, int gap)
 {
-	data->point.x = ((x - y) * gap / 2.);
-	data->point.y = ((x + y) * gap / 2.);
+	data->point.x = ((x - data->map[y][x] - y) * gap / 2);
+	data->point.x1 = ((x1 - data->map[y1][x1] - y1) * gap / 2);
+	data->point.y = ((x - data->map[y][x] + y) * gap / 2);
+	data->point.y1 = ((x1 - data->map[y1][x1] + y1) * gap / 2);
+	if ((data->map[y1][x1] || data->map[y][x])
+			&& data->map[y1][x1] == data->map[y][x])
+		return (1);
+	return(0);
 }
