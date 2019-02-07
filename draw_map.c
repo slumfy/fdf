@@ -85,9 +85,9 @@ int		iso(t_data *data, int x, int y,int x1, int y1, int gap)
 
 int    parallel(t_data *data, int x, int y,int x1, int y1, int gap)
 {
-	data->point.x = (x - data->map[y][x] * cos(0.785398)) * gap / 2;
-	data->point.y = (y - data->map[y][x] * sin(0.785398)) * gap / 2;
-	data->point.x1 = (x1 - data->map[y1][x1] * cos(0.785398)) * gap / 2;
-	data->point.y1 = (y1 - data->map[y1][x1] * sin(0.785398)) * gap / 2;
+	data->point.x = (x - data->map[y][x] * cos(0.785398)) * gap;
+	data->point.y = (y - data->map[y][x] * sin(0.785398)) * gap;
+	data->point.x1 = (x1 - data->map[y1][x1] * cos(0.785398)) * gap;
+	data->point.y1 = (y1 - data->map[y1][x1] * sin(0.785398)) * gap;
 	return(0);
 }
