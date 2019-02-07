@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:41:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/05 04:12:22 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/07 04:51:24 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	printf_map(t_data *data)
 {
-	int x = 0;
-	t_lst *tmp;
-	int y = 0;
+	int		x;
+	t_lst	*tmp;
+	int		y;
 
+	x = 0;
+	y = 0;
 	tmp = data->list;
 	printf("xmax=%d\tymax=%d\n", data->x_max, data->y_max);
-	while(tmp)
+	while (tmp)
 	{
-		printf("%d\tdata= %s\n",x,tmp->data);
+		printf("%d\tdata= %s\n", x, tmp->data);
 		x++;
 		tmp = tmp->next;
 	}

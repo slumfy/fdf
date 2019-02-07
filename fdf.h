@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:15:30 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/07 03:47:01 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/07 05:06:05 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdio.h>
-#include "../minilibx_macos/mlx.h"
+# include "../minilibx_macos/mlx.h"
 
-typedef struct s_point
+typedef struct	s_point
 {
 	int		x;
 	int		x1;
 	int		y;
 	int		y1;
-}			t_point;
+}				t_point;
 
 typedef struct	s_lst
 {
@@ -40,34 +40,33 @@ typedef struct	s_lst
 	struct s_lst	*next;
 }				t_lst;
 
-typedef struct s_data
+typedef struct	s_data
 {
-	void 	*win;
-	void 	*mlx;
-	void 	*img;
+	void	*win;
+	void	*mlx;
+	void	*img;
 	int		x_max;
 	int		y_max;
 	t_lst	*list;
-	int 	**map;
+	int		**map;
 	t_point	point;
-}		t_data;
+}				t_data;
 
+int				parse_map(char *s, t_data *data);
+int				get_map(t_data *data);
+int				fill_map(t_data *data);
 
-int		parse_map(char *s, t_data *data);
-int		get_map(t_data *data);
-int		fill_map(t_data *data);
+int				key_press(int key, t_data *data);
+int				close_button(t_data *data);
+void			line(t_data *data, int x0, int y0, int x1, int y1);
+void			delete_line(t_data *data, int x0, int y0, int x1, int y1);
+void			draw_map(t_data *data, int larg, int haut, int trig);
+void			delete_map(t_data *data, int larg, int haut, int trig);
+int				iso(t_data *data, int x, int y, int x1, int y1, int gap);
+int				parallel(t_data *data, int x, int y, int x1, int y1, int gap);
 
-int		key_press(int key, t_data *data);
-int		close_button(t_data *data);
-void	line(t_data *data, int x0, int y0, int x1, int y1);
-void	delete_line(t_data *data, int x0, int y0, int x1, int y1);
-void	draw_map(t_data *data, int larg, int haut, int trig);
-void	delete_map(t_data *data, int larg, int haut, int trig);
-int		iso(t_data *data, int x, int y,int x1, int y1, int gap);
-int		parallel(t_data *data, int x, int y,int x1, int y1, int gap);
+void			ft_list_pushback(t_lst **begin_list, char *line);
+t_lst			*ft_create_elem(char *data, size_t len);
 
-void	ft_list_pushback(t_lst **begin_list, char *line);
-t_lst  *ft_create_elem(char *data, size_t len);
-
-void	printf_map(t_data *data);
+void			printf_map(t_data *data);
 #endif

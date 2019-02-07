@@ -6,21 +6,21 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/05 04:12:32 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/07 04:43:10 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	parse_map(char *s, t_data *data)
+int		parse_map(char *s, t_data *data)
 {
-	char *line;
-	int	fd;
-	int i;
+	char	*line;
+	int		fd;
+	int		i;
 
 	i = 0;
-	if((fd = open(s, O_RDONLY)) < 0)
-		return(0);
+	if ((fd = open(s, O_RDONLY)) < 0)
+		return (0);
 	while (get_next_line(fd, &line) == 1)
 	{
 		ft_list_pushback(&data->list, line);
@@ -29,10 +29,10 @@ int	parse_map(char *s, t_data *data)
 	}
 	close(fd);
 	get_map(data);
-	return(1);
+	return (1);
 }
 
-int	get_map(t_data *data)
+int		get_map(t_data *data)
 {
 	int		**tab;
 	int		i;
@@ -51,7 +51,7 @@ int	get_map(t_data *data)
 	return (1);
 }
 
-int	fill_map(t_data *data)
+int		fill_map(t_data *data)
 {
 	t_lst	*tmp;
 	int		i;
@@ -62,8 +62,8 @@ int	fill_map(t_data *data)
 	tmp = data->list;
 	while (tmp)
 	{
-	i = 0;
-		if(!(split = ft_strsplit(tmp->data, ' ')))
+		i = 0;
+		if (!(split = ft_strsplit(tmp->data, ' ')))
 			return (0);
 		while (i < data->x_max)
 		{
