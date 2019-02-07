@@ -21,13 +21,13 @@ int		key_press(int key, t_data *data)
 		if (node)
 		{
 			node = 0;
-			delete_map(data, LENGTH / 2, HEIGHT / 2, 0);
+			mlx_clear_window(data->mlx, data->win);
 			draw_map(data, LENGTH / 2, HEIGHT / 2, 1);
 		}
 		else
 		{
 			node = 1;
-			delete_map(data, LENGTH / 2, HEIGHT / 2, 1);
+			mlx_clear_window(data->mlx, data->win);
 			draw_map(data, LENGTH / 2, HEIGHT / 2, 0);
 		}
 	}

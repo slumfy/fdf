@@ -48,42 +48,6 @@ void	draw_map(t_data *data, int larg, int haut, int trig)
 	}
 }
 
-void	delete_map(t_data *data, int larg, int haut, int trig)
-{
-	int	x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (y < data->y_max)
-	{
-		x = 0;
-		while (x < data->x_max)
-		{
-			if (x + 1 < data->x_max)
-			{
-				if (trig)
-					iso(data, x, y, x + 1, y);
-				else
-					parallel(data, x, y, x + 1, y);
-				delete_line(data, data->point.x + larg, data->point.y + haut,
-						data->point.x1 + larg, data->point.y1 + haut);
-			}
-			if (y + 1 < data->y_max)
-			{
-				if (trig)
-					iso(data, x, y, x, y + 1);
-				else
-					parallel(data, x, y, x, y + 1);
-				delete_line(data, data->point.x + larg, data->point.y + haut,
-						data->point.x1 + larg, data->point.y1 + haut);
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
 int		iso(t_data *data, int x, int y, int x1, int y1)
 {
 	int	gap;

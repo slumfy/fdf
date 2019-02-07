@@ -60,9 +60,7 @@ int				fill_map(t_data *data);
 int				key_press(int key, t_data *data);
 int				close_button(t_data *data);
 void			line(t_data *data, int x0, int y0, int x1, int y1);
-void			delete_line(t_data *data, int x0, int y0, int x1, int y1);
 void			draw_map(t_data *data, int larg, int haut, int trig);
-void			delete_map(t_data *data, int larg, int haut, int trig);
 int				iso(t_data *data, int x, int y, int x1, int y1);
 int				parallel(t_data *data, int x, int y, int x1, int y1);
 
