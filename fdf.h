@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:15:30 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/07 05:06:05 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/07 06:05:57 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_data
 	void	*img;
 	int		x_max;
 	int		y_max;
+	int		gap;
 	t_lst	*list;
 	int		**map;
 	t_point	point;
@@ -62,8 +63,8 @@ void			line(t_data *data, int x0, int y0, int x1, int y1);
 void			delete_line(t_data *data, int x0, int y0, int x1, int y1);
 void			draw_map(t_data *data, int larg, int haut, int trig);
 void			delete_map(t_data *data, int larg, int haut, int trig);
-int				iso(t_data *data, int x, int y, int x1, int y1, int gap);
-int				parallel(t_data *data, int x, int y, int x1, int y1, int gap);
+int				iso(t_data *data, int x, int y, int x1, int y1);
+int				parallel(t_data *data, int x, int y, int x1, int y1);
 
 void			ft_list_pushback(t_lst **begin_list, char *line);
 t_lst			*ft_create_elem(char *data, size_t len);
