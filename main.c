@@ -6,24 +6,40 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/06 04:39:32 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/07 03:47:00 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_press(int key, void *param)
+int	key_press(int key, t_data *data)
 {
-	(void)param;
+	static int node;
+
+	if (key == 35)
+	{
+		if (node)
+		{
+			node = 0;
+			delete_map(data, 800, 300, 0);
+			draw_map(data, 800, 300, 1);
+		}
+		else
+		{
+			node = 1;
+			delete_map(data, 800, 300, 1);
+			draw_map(data, 800, 300, 0);
+		}
+	}
 	if (key == 53)
 		exit (0);
 	ft_putnbr(key);
 	return(0);
 }
 
-int	close_button(void *param)
+int	close_button(t_data *data)
 {
-	(void)param;
+	(void)data;
 	exit(0);
 	return (0);
 }
@@ -39,9 +55,9 @@ int		main(int ac, char **av)
 	printf_map(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, LENGTH, HEIGHT, av[1]);
-	draw_map(&data, 800, 300);
-	mlx_hook(data.win, 2, 0, key_press, (void *)0);
-	mlx_hook(data.win, 17, 0, close_button, (void *)0);
+	draw_map(&data, 800, 300, 1);
+	mlx_hook(data.win, 2, 0, key_press, &data);
+	mlx_hook(data.win, 17, 0, close_button, &data);
 	mlx_loop(data.mlx);
 	return(0);
 }
