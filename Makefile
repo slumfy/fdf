@@ -6,15 +6,14 @@
 #    By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/29 16:07:40 by rvalenti          #+#    #+#              #
-#    Updated: 2019/02/07 23:44:13 by rvalenti         ###   ########.fr        #
+#    Updated: 2019/02/08 00:25:18 by rvalenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 SRC =	main.c\
 	parse_map.c\
-	ft_list_pushback.c\
-	ft_create_elem.c\
+	list.c\
 	bresenham.c\
 	draw_map.c\
 	key_hook.c\

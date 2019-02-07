@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_pushback.c                                 :+:      :+:    :+:   */
+/*   ft_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 21:48:05 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/05 03:04:00 by rvalenti         ###   ########.fr       */
+/*   Created: 2019/02/08 00:24:13 by rvalenti          #+#    #+#             */
+/*   Updated: 2019/02/08 00:24:42 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_lst	*ft_create_elem(char *data, size_t len)
+{
+	t_lst	*new;
+
+	if (!(new = (t_lst*)ft_memalloc(sizeof(t_lst))))
+		exit(0);
+	new->data = data;
+	new->len = len;
+	new->next = NULL;
+	return (new);
+}
 
 void	ft_list_pushback(t_lst **begin_list, char *line)
 {
