@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/07 04:43:10 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/07 23:13:44 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		parse_map(char *s, t_data *data)
 		data->x_max = ft_countword(line, ' ');
 		data->y_max++;
 	}
+	data->y_max--;
 	close(fd);
 	if (!get_map(data))
 		return (0);
