@@ -22,7 +22,7 @@ SRC =	main.c\
 LIBFT = ./libft/
 CC = gcc -Wall -Werror -Wextra
 INCLUDES = ./
-MINILIB = -I ../minilibx_macos -L ../minilibx_macos -lmlx -framework opengl -framework AppKit
+MINILIB = -I ./minilibx_macos -L ./minilibx_macos -lmlx -framework opengl -framework AppKit
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)

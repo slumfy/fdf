@@ -12,8 +12,8 @@
 
 #ifndef FDF_H
 # define FDF_H
-# define LENGTH 1920
-# define HEIGHT 1080
+# define LENGTH 1080
+# define HEIGHT 720
 
 # include "libft/libft.h"
 # include <stdlib.h>
@@ -23,7 +23,7 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "../minilibx_macos/mlx.h"
+# include "./minilibx_macos/mlx.h"
 
 typedef struct	s_point
 {

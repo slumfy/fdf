@@ -28,7 +28,8 @@ int		parse_map(char *s, t_data *data)
 		data->y_max++;
 	}
 	close(fd);
-	get_map(data);
+	if (!get_map(data))
+		return (0);
 	return (1);
 }
 
@@ -47,7 +48,8 @@ int		get_map(t_data *data)
 		i++;
 	}
 	data->map = tab;
-	fill_map(data);
+	if (!fill_map(data))
+		return (0);
 	return (1);
 }
 
@@ -70,6 +72,7 @@ int		fill_map(t_data *data)
 			data->map[x][i] = ft_atoi(split[i]);
 			i++;
 		}
+		ft_freetab((void ***)&split);
 		x++;
 		tmp = tmp->next;
 	}
