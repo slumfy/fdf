@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 22:39:35 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/07 23:10:20 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/07 23:45:46 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int		key_press(int key, t_data *data)
 		change_proj(data);
 	else if (key == 53)
 		exit(0);
-	ft_putnbr(key);
 	return (0);
 }
 

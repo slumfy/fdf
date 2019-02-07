@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/07 23:09:39 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 00:02:59 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 int		main(int ac, char **av)
 {
-	t_data data;
+	t_data d;
 
 	if (ac < 2)
 		return (0);
-	if (!(parse_map(av[1], &data)))
+	if (!(parse_map(av[1], &d)))
 		return (0);
-	data.gap = LENGTH / (data.x_max * 2);
-	data.proj = 1;
-	printf_map(&data);
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, LENGTH, HEIGHT, av[1]);
-	draw_map(&data, LENGTH / 2, HEIGHT / 2, data.proj);
-	mlx_hook(data.win, 2, 0, key_press, &data);
-	mlx_hook(data.win, 17, 0, close_button, &data);
-	mlx_loop(data.mlx);
+	d.gap = LENGTH / (d.x_max * 2);
+	d.proj = 1;
+	d.mlx = mlx_init();
+	d.win = mlx_new_window(d.mlx, LENGTH, HEIGHT, av[1]);
+	draw_map(&d, LENGTH / 2, HEIGHT / 2, d.proj);
+	mlx_hook(d.win, 2, 0, key_press, &d);
+	mlx_hook(d.win, 17, 0, close_button, &d);
+	mlx_loop(d.mlx);
 	return (0);
 }
