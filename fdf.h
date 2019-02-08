@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:15:30 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 02:18:12 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 02:40:35 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int				zoom(int key, t_data *data);
 int				close_button(t_data *data);
 int				is_in_win(t_point p, int l, int h);
 void			line(t_data *data, int l, int h);
-void			draw_map(t_data *data, int larg, int haut, int trig);
-void			proj(t_data *data, int x, int y, int x1, int y1, int trig);
+void			draw_map(t_data *data, int larg, int haut);
+void			proj(t_data *data, int x, int y, int x1, int y1);
 
 void			ft_list_pushback(t_lst **begin_list, char *line);
 t_lst			*ft_create_elem(char *data, size_t len);

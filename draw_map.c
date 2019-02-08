@@ -6,13 +6,13 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 02:17:50 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 02:42:14 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_map(t_data *data, int larg, int haut, int trig)
+void	draw_map(t_data *data, int larg, int haut)
 {
 	int	x;
 	int y;
@@ -26,12 +26,12 @@ void	draw_map(t_data *data, int larg, int haut, int trig)
 		{
 			if (x + 1 < data->x_max)
 			{
-				proj(data, x, y, x + 1, y, trig);
+				proj(data, x, y, x + 1, y);
 				line(data, larg, haut);
 			}
 			if (y + 1 < data->y_max)
 			{
-				proj(data, x, y, x, y + 1, trig);
+				proj(data, x, y, x, y + 1);
 				line(data, larg, haut);
 			}
 			x++;
@@ -40,7 +40,7 @@ void	draw_map(t_data *data, int larg, int haut, int trig)
 	}
 }
 
-void	proj(t_data *data, int x, int y, int x1, int y1, int trig)
+void	proj(t_data *data, int x, int y, int x1, int y1)
 {
 	int	gap;
 	int ox;
@@ -53,7 +53,7 @@ void	proj(t_data *data, int x, int y, int x1, int y1, int trig)
 	oy = y - data->y_max / 2;
 	oy1 = y1 - data->y_max / 2;
 	gap = data->gap;
-	if (trig)
+	if (data->proj)
 	{
 		data->p.x = ((ox - oy) * cos(0.523599)) * gap;
 		data->p.y = (-data->map[y][x] + (ox + oy) * sin(0.523599)) * gap;

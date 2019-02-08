@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 22:39:35 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/07 23:45:46 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 02:43:04 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int		zoom(int key, t_data *data)
 	{
 		data->gap++;
 		mlx_clear_window(data->mlx, data->win);
-		draw_map(data, LENGTH / 2, HEIGHT / 2, data->proj);
+		draw_map(data, LENGTH / 2, HEIGHT / 2);
 	}
 	else if (key == 125)
 	{
 		data->gap--;
 		mlx_clear_window(data->mlx, data->win);
-		draw_map(data, LENGTH / 2, HEIGHT / 2, data->proj);
+		draw_map(data, LENGTH / 2, HEIGHT / 2);
 	}
 	return (0);
 }
@@ -46,13 +46,13 @@ int		change_proj(t_data *data)
 	{
 		data->proj = 0;
 		mlx_clear_window(data->mlx, data->win);
-		draw_map(data, LENGTH / 2, HEIGHT / 2, data->proj);
+		draw_map(data, LENGTH / 2, HEIGHT / 2);
 	}
 	else
 	{
 		data->proj = 1;
 		mlx_clear_window(data->mlx, data->win);
-		draw_map(data, LENGTH / 2, HEIGHT / 2, data->proj);
+		draw_map(data, LENGTH / 2, HEIGHT / 2);
 	}
 	return (0);
 }
