@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 04:35:14 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 00:37:13 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 01:51:33 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	line(t_data *d, int l, int h)
 	b.err = (b.dx > b.dy ? b.dx : -b.dy) / 2;
 	while (1)
 	{
-		if ((d->p.x + l < LENGTH && d->p.x + l > 0) && (d->p.y + h < HEIGHT && d->p.y + h > 0))
+		if (is_in_win(d->p, l, h))
 			mlx_pixel_put(d->mlx, d->win, d->p.x + l, d->p.y + h, 0xFFFFFF);
 		if (d->p.x == d->p.x1 && d->p.y == d->p.y1)
 			break ;
@@ -39,4 +39,12 @@ void	line(t_data *d, int l, int h)
 			d->p.y += b.sy;
 		}
 	}
+}
+
+int		is_in_win(t_point p, int l, int h)
+{
+	if ((p.x + l < LENGTH && p.x + l > 0)
+			&& (p.y + h < HEIGHT && p.y + h > 0))
+		return (1);
+	return (0);
 }
