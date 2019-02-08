@@ -79,7 +79,7 @@ int				is_in_win(t_point p, int l, int h);
 void			line(t_data *data, int l, int h, int z);
 void			draw_map(t_data *d, int larg, int haut);
 void			proj(t_data *d, t_point s);
-
+int			color(int z,t_data *data);
 int				is_int(char *str);
 void			ft_list_pushback(t_lst **begin_list, char *line);
 t_lst			*ft_create_elem(char *data, size_t len);

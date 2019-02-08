@@ -81,7 +81,7 @@ void	line(t_data *d, int l, int h, int z)
 	b.err = (b.dx > b.dy ? b.dx : -b.dy) / 2;
 	while (1)
 	{
-		mlx_pixel_put(d->mlx, d->win, d->p.x + l, d->p.y + h, (z ? CO : WH));
+		mlx_pixel_put(d->mlx, d->win, d->p.x + l, d->p.y + h, color(z, d));
 		if ((d->p.x == d->p.x1 && d->p.y == d->p.y1) || !is_in_win(d->p, l, h))
 			break ;
 		b.e2 = b.err;

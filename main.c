@@ -66,3 +66,11 @@ int		close_button(t_data *data)
 	exit(0);
 	return (0);
 }
+
+int		color(int z, t_data *data)
+{
+	(void)data;
+	if (z == 1)
+		return (0xFF00FF);
+	return (0xFFFFFF);
+}
