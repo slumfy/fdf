@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 05:44:18 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 06:52:52 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ int		main(int ac, char **av)
 	}
 	d.gap = LENGTH / (d.x_max * 2);
 	d.proj = 1;
-	d.mlx = mlx_init();
-	d.win = mlx_new_window(d.mlx, LENGTH, HEIGHT, av[1]);
+	if (!(d.mlx = mlx_init())
+			|| !(d.win = mlx_new_window(d.mlx, LENGTH, HEIGHT, av[1])))
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
 	draw_map(&d, LENGTH / 2, HEIGHT / 2);
 	mlx_hook(d.win, 2, 0, key_press, &d);
 	mlx_hook(d.win, 17, 0, close_button, &d);
