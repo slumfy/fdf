@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 07:59:50 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 11:00:51 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,28 @@ void	proj(t_data *d, t_point s)
 {
 	int	gap;
 	int ox;
-	int ox1;
+	int y;
 	int oy;
-	int oy1;
+	int z;
 
 	ox = s.x - d->x_max / 2;
-	ox1 = s.x1 - d->x_max / 2;
+	y = s.x1 - d->x_max / 2;
 	oy = s.y - d->y_max / 2;
-	oy1 = s.y1 - d->y_max / 2;
+	z = s.y1 - d->y_max / 2;
 	gap = d->gap;
 	if (d->proj)
 	{
 		d->p.x = ((ox - oy) * cos(0.523599)) * gap;
-		d->p.y = (-d->m[s.y][s.x] + (ox + oy) * sin(0.523599)) * gap;
-		d->p.x1 = ((ox1 - oy1) * cos(0.523599)) * gap;
-		d->p.y1 = (-d->m[s.y1][s.x1] + (ox1 + oy1) * sin(0.523599)) * gap;
+		d->p.y = (-(d->m[s.y][s.x] * d->n) + (ox + oy) * sin(0.523599)) * gap;
+		d->p.x1 = ((y - z) * cos(0.523599)) * gap;
+		d->p.y1 = ((-d->m[s.y1][s.x1] * d->n) + (y + z) * sin(0.523599)) * gap;
 	}
 	else
 	{
-		d->p.x = (ox - d->m[s.y][s.x] * cos(0.785398)) * gap;
-		d->p.y = (oy - d->m[s.y][s.x] * sin(0.785398)) * gap;
-		d->p.x1 = (ox1 - d->m[s.y1][s.x1] * cos(0.785398)) * gap;
-		d->p.y1 = (oy1 - d->m[s.y1][s.x1] * sin(0.785398)) * gap;
+		d->p.x = ((ox - d->m[s.y][s.x] * d->n) * cos(0.785398)) * gap;
+		d->p.y = ((oy - d->m[s.y][s.x] * d->n) * sin(0.785398)) * gap;
+		d->p.x1 = ((y - d->m[s.y1][s.x1] * d->n) * cos(0.785398)) * gap;
+		d->p.y1 = ((z - d->m[s.y1][s.x1] * d->n) * sin(0.785398)) * gap;
 	}
 }
 

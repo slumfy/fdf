@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 10:28:19 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 10:58:53 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		main(int ac, char **av)
 	}
 	d.gap = LENGTH / (d.x_max * 2);
 	d.proj = 1;
+	d.n = 1.2;
 	if (!(d.mlx = mlx_init())
 			|| !(d.win = mlx_new_window(d.mlx, LENGTH, HEIGHT, av[1])))
 	{
@@ -40,6 +41,8 @@ int		main(int ac, char **av)
 
 int		key_press(int key, t_data *data)
 {
+	if (key == 123 || key == 124)
+		zoom(key, data);
 	if (key == 126 || key == 125)
 		zoom(key, data);
 	else if (key == 35)
@@ -51,17 +54,27 @@ int		key_press(int key, t_data *data)
 
 int		zoom(int key, t_data *data)
 {
+	if (key == 123)
+	{
+		data->n -= 0.2;
+		mlx_clear_window(data->mlx, data->win);
+		draw_map(data, LENGTH / 2, HEIGHT / 2);
+	}
+	if (key == 124)
+	{
+		data->n += 0.2;
+		mlx_clear_window(data->mlx, data->win);
+		draw_map(data, LENGTH / 2, HEIGHT / 2);
+	}
 	if (key == 126)
 	{
 		data->gap++;
-		mlx_clear_window(data->mlx, data->win);
 		draw_map(data, LENGTH / 2, HEIGHT / 2);
 	}
 	else if (key == 125)
 	{
 		data->gap--;
 		mlx_clear_window(data->mlx, data->win);
-		draw_map(data, LENGTH / 2, HEIGHT / 2);
 	}
 	return (0);
 }
