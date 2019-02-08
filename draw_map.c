@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 07:09:44 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 07:20:39 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,10 @@ int		is_int(char *str)
 	while (str[i])
 	{
 		if ((str[i] == '-' || str[i] == '+')
-				&& !ft_isdigit(str[i]) && str[i] != ' ')
+				&& !ft_isdigit(str[i + 1]))
 			return (0);
-		if (!ft_isdigit(str[i]) && str[i] != ' ')
+		if (!ft_isdigit(str[i]) && str[i] != ' '
+				&& str[i] != '-' && str[i] != '+')
 			return (0);
 		i++;
 	}
