@@ -6,41 +6,42 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 02:42:14 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 04:55:53 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_map(t_data *data, int larg, int haut)
+void	draw_map(t_data *d, int larg, int haut)
 {
-	int	x;
-	int y;
+	t_point	abs;
 
-	x = 0;
-	y = 0;
-	while (y < data->y_max)
+	abs.y = -1;
+	while (++(abs.y) < d->y_max)
 	{
-		x = 0;
-		while (x < data->x_max)
+		abs.x = 0;
+		while (abs.x < d->x_max)
 		{
-			if (x + 1 < data->x_max)
+			if (abs.x + 1 < d->x_max)
 			{
-				proj(data, x, y, x + 1, y);
-				line(data, larg, haut);
+				abs.x1 = abs.x + 1;
+				abs.y1 = abs.y;
+				proj(d, abs);
+				line(d, larg, haut);
 			}
-			if (y + 1 < data->y_max)
+			if (abs.y + 1 < d->y_max)
 			{
-				proj(data, x, y, x, y + 1);
-				line(data, larg, haut);
+				abs.x1 = abs.x;
+				abs.y1 = abs.y + 1;
+				proj(d, abs);
+				line(d, larg, haut);
 			}
-			x++;
+			abs.x++;
 		}
-		y++;
 	}
 }
 
-void	proj(t_data *data, int x, int y, int x1, int y1)
+void	proj(t_data *d, t_point abs)
 {
 	int	gap;
 	int ox;
@@ -48,23 +49,60 @@ void	proj(t_data *data, int x, int y, int x1, int y1)
 	int oy;
 	int oy1;
 
-	ox = x - data->x_max / 2;
-	ox1 = x1 - data->x_max / 2;
-	oy = y - data->y_max / 2;
-	oy1 = y1 - data->y_max / 2;
-	gap = data->gap;
-	if (data->proj)
+	ox = abs.x - d->x_max / 2;
+	ox1 = abs.x1 - d->x_max / 2;
+	oy = abs.y - d->y_max / 2;
+	oy1 = abs.y1 - d->y_max / 2;
+	gap = d->gap;
+	if (d->proj)
 	{
-		data->p.x = ((ox - oy) * cos(0.523599)) * gap;
-		data->p.y = (-data->map[y][x] + (ox + oy) * sin(0.523599)) * gap;
-		data->p.x1 = ((ox1 - oy1) * cos(0.523599)) * gap;
-		data->p.y1 = (-data->map[y1][x1] + (ox1 + oy1) * sin(0.523599)) * gap;
+		d->p.x = ((ox - oy) * cos(0.523599)) * gap;
+		d->p.y = (-d->map[abs.y][abs.x] + (ox + oy) * sin(0.523599)) * gap;
+		d->p.x1 = ((ox1 - oy1) * cos(0.523599)) * gap;
+		d->p.y1 = (-d->map[abs.y1][abs.x1] + (ox1 + oy1) * sin(0.523599)) * gap;
 	}
 	else
 	{
-		data->p.x = (ox - data->map[y][x] * cos(0.785398)) * gap;
-		data->p.y = (oy - data->map[y][x] * sin(0.785398)) * gap;
-		data->p.x1 = (ox1 - data->map[y1][x1] * cos(0.785398)) * gap;
-		data->p.y1 = (oy1 - data->map[y1][x1] * sin(0.785398)) * gap;
+		d->p.x = (ox - d->map[abs.y][abs.x] * cos(0.785398)) * gap;
+		d->p.y = (oy - d->map[abs.y][abs.x] * sin(0.785398)) * gap;
+		d->p.x1 = (ox1 - d->map[abs.y1][abs.x1] * cos(0.785398)) * gap;
+		d->p.y1 = (oy1 - d->map[abs.y1][abs.x1] * sin(0.785398)) * gap;
 	}
+}
+
+void	line(t_data *d, int l, int h)
+{
+	t_bre	b;
+
+	b.dx = abs((d->p.x1 + l) - (d->p.x + l));
+	b.sx = d->p.x < d->p.x1 ? 1 : -1;
+	b.dy = abs((d->p.y1 + h) - (d->p.y + h));
+	b.sy = d->p.y < d->p.y1 ? 1 : -1;
+	b.err = (b.dx > b.dy ? b.dx : -b.dy) / 2;
+	while (1)
+	{
+		if (is_in_win(d->p, l, h))
+			mlx_pixel_put(d->mlx, d->win, d->p.x + l, d->p.y + h, 0xFFFFFF);
+		if (d->p.x == d->p.x1 && d->p.y == d->p.y1)
+			break ;
+		b.e2 = b.err;
+		if (b.e2 > -b.dx)
+		{
+			b.err -= b.dy;
+			d->p.x += b.sx;
+		}
+		if (b.e2 < b.dy)
+		{
+			b.err += b.dx;
+			d->p.y += b.sy;
+		}
+	}
+}
+
+int		is_in_win(t_point p, int l, int h)
+{
+	if ((p.x + l < LENGTH && p.x + l > 0)
+			&& (p.y + h < HEIGHT && p.y + h > 0))
+		return (1);
+	return (0);
 }
