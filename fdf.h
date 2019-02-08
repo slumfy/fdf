@@ -59,6 +59,8 @@ typedef struct	s_data
 	void	*img;
 	int		x_max;
 	int		y_max;
+	int		l;
+	int		h;
 	int		gap;
 	int		proj;
 	double	n;
@@ -71,9 +73,7 @@ int				parse_map(char *s, t_data *data);
 int				get_map(t_data *data);
 int				fill_map(t_data *data);
 
-int				key_press(int key, t_data *data);
-int				change_proj(t_data *data);
-int				zoom(int key, t_data *data);
+int				zoom_proj_alt_mov(int key, t_data *data);
 int				close_button(t_data *data);
 int				is_in_win(t_point p, int l, int h);
 void			line(t_data *data, int l, int h, int z);
