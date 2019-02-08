@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 04:56:54 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 05:44:18 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int		main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	if (!(parse_map(av[1], &d)))
+	{
+		write(2, "Error\n", 6);
 		return (0);
+	}
 	d.gap = LENGTH / (d.x_max * 2);
 	d.proj = 1;
 	d.mlx = mlx_init();

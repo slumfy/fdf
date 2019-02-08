@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 04:58:28 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 05:42:04 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int		fill_map(t_data *data)
 	tmp = data->list;
 	while (tmp)
 	{
+		if (!is_int(tmp->data))
+			return (0);
 		i = 0;
 		if (!(split = ft_strsplit(tmp->data, ' ')))
 			return (0);

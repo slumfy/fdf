@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 04:55:53 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 05:44:55 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,17 @@ int		is_in_win(t_point p, int l, int h)
 			&& (p.y + h < HEIGHT && p.y + h > 0))
 		return (1);
 	return (0);
+}
+
+int		is_int(char *str)
+{
+	while (str)
+	{
+		if ((*str == '-' || *str == '+') && !ft_isdigit(*(str + 1)))
+			return (0);
+		else if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
 }
