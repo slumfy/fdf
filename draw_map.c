@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 02:16:56 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 02:17:50 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_map(t_data *data, int larg, int haut, int trig)
 	}
 }
 
-int		proj(t_data *data, int x, int y, int x1, int y1, int trig)
+void	proj(t_data *data, int x, int y, int x1, int y1, int trig)
 {
 	int	gap;
 	int ox;
@@ -67,5 +67,4 @@ int		proj(t_data *data, int x, int y, int x1, int y1, int trig)
 		data->p.x1 = (ox1 - data->map[y1][x1] * cos(0.785398)) * gap;
 		data->p.y1 = (oy1 - data->map[y1][x1] * sin(0.785398)) * gap;
 	}
-	return (0);
 }
