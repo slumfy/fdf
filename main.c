@@ -69,7 +69,7 @@ int		close_button(t_data *data)
 
 int		color(int z, t_data *data)
 {
-	static int	color;
+	//static int	color;
 	(void)data;
 	if (z == 1)
 		return (0xFF00FF);
