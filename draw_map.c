@@ -6,42 +6,42 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 07:20:39 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 07:55:29 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_map(t_data *d, int larg, int haut)
+void	draw_map(t_data *d, int l, int h)
 {
-	t_point	abs;
+	t_point	s;
 
-	abs.y = -1;
-	while (++(abs.y) < d->y_max)
+	s.y = -1;
+	while (++(s.y) < d->y_max)
 	{
-		abs.x = 0;
-		while (abs.x < d->x_max)
+		s.x = 0;
+		while (s.x < d->x_max)
 		{
-			if (abs.x + 1 < d->x_max)
+			if (s.x + 1 < d->x_max)
 			{
-				abs.x1 = abs.x + 1;
-				abs.y1 = abs.y;
-				proj(d, abs);
-				line(d, larg, haut);
+				s.x1 = s.x + 1;
+				s.y1 = s.y;
+				proj(d, s);
+				line(d, l, h, (d->m[s.y][s.x] || d->m[s.y][s.x + 1] ? 1 : 0));
 			}
-			if (abs.y + 1 < d->y_max)
+			if (s.y + 1 < d->y_max)
 			{
-				abs.x1 = abs.x;
-				abs.y1 = abs.y + 1;
-				proj(d, abs);
-				line(d, larg, haut);
+				s.x1 = s.x;
+				s.y1 = s.y + 1;
+				proj(d, s);
+				line(d, l, h, (d->m[s.y][s.x] || d->m[s.y + 1][s.x] ? 1 : 0));
 			}
-			abs.x++;
+			s.x++;
 		}
 	}
 }
 
-void	proj(t_data *d, t_point abs)
+void	proj(t_data *d, t_point s)
 {
 	int	gap;
 	int ox;
@@ -49,28 +49,28 @@ void	proj(t_data *d, t_point abs)
 	int oy;
 	int oy1;
 
-	ox = abs.x - d->x_max / 2;
-	ox1 = abs.x1 - d->x_max / 2;
-	oy = abs.y - d->y_max / 2;
-	oy1 = abs.y1 - d->y_max / 2;
+	ox = s.x - d->x_max / 2;
+	ox1 = s.x1 - d->x_max / 2;
+	oy = s.y - d->y_max / 2;
+	oy1 = s.y1 - d->y_max / 2;
 	gap = d->gap;
 	if (d->proj)
 	{
 		d->p.x = ((ox - oy) * cos(0.523599)) * gap;
-		d->p.y = (-d->map[abs.y][abs.x] + (ox + oy) * sin(0.523599)) * gap;
+		d->p.y = (-d->m[s.y][s.x] + (ox + oy) * sin(0.523599)) * gap;
 		d->p.x1 = ((ox1 - oy1) * cos(0.523599)) * gap;
-		d->p.y1 = (-d->map[abs.y1][abs.x1] + (ox1 + oy1) * sin(0.523599)) * gap;
+		d->p.y1 = (-d->m[s.y1][s.x1] + (ox1 + oy1) * sin(0.523599)) * gap;
 	}
 	else
 	{
-		d->p.x = (ox - d->map[abs.y][abs.x] * cos(0.785398)) * gap;
-		d->p.y = (oy - d->map[abs.y][abs.x] * sin(0.785398)) * gap;
-		d->p.x1 = (ox1 - d->map[abs.y1][abs.x1] * cos(0.785398)) * gap;
-		d->p.y1 = (oy1 - d->map[abs.y1][abs.x1] * sin(0.785398)) * gap;
+		d->p.x = (ox - d->m[s.y][s.x] * cos(0.785398)) * gap;
+		d->p.y = (oy - d->m[s.y][s.x] * sin(0.785398)) * gap;
+		d->p.x1 = (ox1 - d->m[s.y1][s.x1] * cos(0.785398)) * gap;
+		d->p.y1 = (oy1 - d->m[s.y1][s.x1] * sin(0.785398)) * gap;
 	}
 }
 
-void	line(t_data *d, int l, int h)
+void	line(t_data *d, int l, int h, int z)
 {
 	t_bre	b;
 
@@ -81,9 +81,8 @@ void	line(t_data *d, int l, int h)
 	b.err = (b.dx > b.dy ? b.dx : -b.dy) / 2;
 	while (1)
 	{
-		if (is_in_win(d->p, l, h))
-			mlx_pixel_put(d->mlx, d->win, d->p.x + l, d->p.y + h, 0xFFFFFF);
-		if (d->p.x == d->p.x1 && d->p.y == d->p.y1)
+		mlx_pixel_put(d->mlx, d->win, d->p.x + l, d->p.y + h, (z ? CO : WH));
+		if ((d->p.x == d->p.x1 && d->p.y == d->p.y1) || !is_in_win(d->p, l, h))
 			break ;
 		b.e2 = b.err;
 		if (b.e2 > -b.dx)
@@ -101,8 +100,11 @@ void	line(t_data *d, int l, int h)
 
 int		is_in_win(t_point p, int l, int h)
 {
-	if ((p.x + l < LENGTH && p.x + l > 0)
-			&& (p.y + h < HEIGHT && p.y + h > 0))
+	if ((p.x + l <= LENGTH && p.x + l >= 0)
+			&& (p.y + h <= HEIGHT && p.y + h >= 0))
+		return (1);
+	if ((p.x1 + l <= LENGTH && p.x1 + l >= 0)
+			&& (p.y1 + h <= HEIGHT && p.y1 + h >= 0))
 		return (1);
 	return (0);
 }

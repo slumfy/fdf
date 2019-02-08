@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:15:30 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 05:42:27 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 07:55:36 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FDF_H
 # define LENGTH 1080
 # define HEIGHT 720
+# define WH 0xFFFFFF
+# define CO 0xFF00FF
 
 # include "libft/libft.h"
 # include <stdlib.h>
@@ -60,7 +62,7 @@ typedef struct	s_data
 	int		gap;
 	int		proj;
 	t_lst	*list;
-	int		**map;
+	int		**m;
 	t_point	p;
 }				t_data;
 
@@ -73,9 +75,9 @@ int				change_proj(t_data *data);
 int				zoom(int key, t_data *data);
 int				close_button(t_data *data);
 int				is_in_win(t_point p, int l, int h);
-void			line(t_data *data, int l, int h);
+void			line(t_data *data, int l, int h, int z);
 void			draw_map(t_data *d, int larg, int haut);
-void			proj(t_data *d, t_point abs);
+void			proj(t_data *d, t_point s);
 
 int				is_int(char *str);
 void			ft_list_pushback(t_lst **begin_list, char *line);

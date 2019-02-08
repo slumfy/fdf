@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 07:02:40 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/08 07:42:57 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		get_map(t_data *data)
 			return (0);
 		i++;
 	}
-	data->map = tab;
+	data->m = tab;
 	if (!fill_map(data))
 		return (0);
 	return (1);
@@ -72,7 +72,7 @@ int		fill_map(t_data *data)
 			return (0);
 		while (i < data->x_max)
 		{
-			data->map[x][i] = ft_atoi(split[i]);
+			data->m[x][i] = ft_atoi(split[i]);
 			i++;
 		}
 		ft_freetab((void ***)&split);
