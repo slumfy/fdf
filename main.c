@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 07:27:05 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 08:32:58 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,16 @@ int		main(int ac, char **av)
 	t_data d;
 
 	if (ac < 2)
-		return (0);
+		return (write(1, "Usage: fdf [map]\n", 16) == 42);
 	if (!(parse_map(av[1], &d)))
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
+		return (write(2, "Error\n", 6) == 42);
 	if (!(d.mlx = mlx_init())
 			|| !(d.win = mlx_new_window(d.mlx, LENGTH, HEIGHT, av[1])))
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
+		return (write(2, "Error\n", 6) == 42);
+	d.img.ptr = mlx_new_image(d.mlx, LENGTH, HEIGHT);
+	d.img.s = (int*)mlx_get_data_addr(d.img.ptr, &d.img.b, &d.img.l, &d.img.e);
 	draw_map(&d, d.l, d.h);
+	mlx_put_image_to_window(d.mlx, d.win, d.img.ptr, 0, 0);
 	set_hud(&d);
 	mlx_hook(d.win, 2, 0, zoom_proj_alt_mov, &d);
 	mlx_hook(d.win, 17, 0, close_button, &d);
@@ -55,8 +52,9 @@ int		zoom_proj_alt_mov(int key, t_data *data)
 		data->hud = (data->hud ? 0 : 1);
 	else if (key == 53)
 		exit(0);
-	mlx_clear_window(data->mlx, data->win);
+	ft_memset(data->img.s, 0, data->img.l * HEIGHT);
 	draw_map(data, data->l, data->h);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	set_hud(data);
 	return (0);
 }
@@ -79,7 +77,7 @@ int		color(int z, t_data *data)
 
 void	set_hud(t_data *data)
 {
-	if (!data->hud)
+	if (data->hud)
 	{
 		mlx_string_put(data->mlx, data->win, 0, 0, WHITE,
 				"change projection: P");

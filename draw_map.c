@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 11:00:51 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 08:24:01 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ void	line(t_data *d, int l, int h, int z)
 	b.err = (b.dx > b.dy ? b.dx : -b.dy) / 2;
 	while (1)
 	{
-		mlx_pixel_put(d->mlx, d->win, d->p.x + l, d->p.y + h, color(z, d));
-		if ((d->p.x == d->p.x1 && d->p.y == d->p.y1) || !is_in_win(d->p, l, h))
+		if ((d->p.x == d->p.x1 && d->p.y == d->p.y1))
 			break ;
+		if (is_in_win(d->p, l, h))
+			d->img.s[d->p.x + l + ((d->p.y + h) * LENGTH)] = color(z, d);
 		b.e2 = b.err;
 		if (b.e2 > -b.dx)
 		{
@@ -100,11 +101,8 @@ void	line(t_data *d, int l, int h, int z)
 
 int		is_in_win(t_point p, int l, int h)
 {
-	if ((p.x + l <= LENGTH && p.x + l >= 0)
-			&& (p.y + h <= HEIGHT && p.y + h >= 0))
-		return (1);
-	if ((p.x1 + l <= LENGTH && p.x1 + l >= 0)
-			&& (p.y1 + h <= HEIGHT && p.y1 + h >= 0))
+	if ((p.x + l < LENGTH && p.x + l >= 0)
+			&& (p.y + h < HEIGHT && p.y + h >= 0))
 		return (1);
 	return (0);
 }
