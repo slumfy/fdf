@@ -17,7 +17,7 @@ SRC =	main.c\
 
 LIBFT = ./libft/
 MINILIBX = ./minilibx_macos/
-CC = gcc -Wall -Werror -Wextra
+CC = gcc -Wall -Werror -Wextra -fsanitize=address -g
 INCLUDES = ./
 MINILIB = -I ./minilibx_macos -L ./minilibx_macos -lmlx -framework opengl -framework AppKit
 OBJ = $(SRC:.c=.o)

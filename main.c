@@ -26,6 +26,7 @@ int		main(int ac, char **av)
 	d.gap = LENGTH / (d.x_max * 2);
 	d.proj = 1;
 	d.n = 1.0;
+	d.color = BLUE;
 	d.l = LENGTH / 2;
 	d.h = HEIGHT / 2;
 	if (!(d.mlx = mlx_init())
@@ -53,6 +54,8 @@ int		zoom_proj_alt_mov(int key, t_data *data)
 		data->h += (key == 40 ? 10 : -10);
 	else if (key == 38 || key == 37)
 		data->l += (key == 37 ? 10 : -10);
+	else if (key == 31)
+		data->color = (data->color == RED ? BLUE : data->color << 8);
 	else if (key == 53)
 		exit(0);
 	mlx_clear_window(data->mlx, data->win);
@@ -69,9 +72,9 @@ int		close_button(t_data *data)
 
 int		color(int z, t_data *data)
 {
-	//static int	color;
-	(void)data;
 	if (z == 1)
-		return (0xFF00FF);
+	{
+		return (data->color);
+	}
 	return (0xFFFFFF);
 }

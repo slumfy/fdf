@@ -14,8 +14,11 @@
 # define FDF_H
 # define LENGTH 1080
 # define HEIGHT 720
-# define WH 0xFFFFFF
-# define CO 0xFF00FF
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
+# define GREEN 0x00FF00
+# define BLUE 0x0000FF
+
 
 # include "libft/libft.h"
 # include <stdlib.h>
@@ -63,6 +66,7 @@ typedef struct	s_data
 	int		h;
 	int		gap;
 	int		proj;
+	int		color;
 	double	n;
 	t_lst	*list;
 	int		**m;

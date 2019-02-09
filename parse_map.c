@@ -28,7 +28,6 @@ int		parse_map(char *s, t_data *data)
 		data->y_max++;
 	}
 	close(fd);
-	data->y_max -= 2;
 	if (!get_map(data))
 		return (0);
 	return (1);
