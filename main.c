@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 08:32:58 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 08:36:31 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(int ac, char **av)
 	t_data d;
 
 	if (ac < 2)
-		return (write(1, "Usage: fdf [map]\n", 16) == 42);
+		return (write(1, "Usage: fdf [map]\n", 17) == 42);
 	if (!(parse_map(av[1], &d)))
 		return (write(2, "Error\n", 6) == 42);
 	if (!(d.mlx = mlx_init())
