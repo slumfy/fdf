@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 10:58:53 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 07:27:05 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int		main(int ac, char **av)
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	d.gap = LENGTH / (d.x_max * 2);
-	d.proj = 1;
-	d.n = 1.0;
-	d.color = BLUE;
-	d.l = LENGTH / 2;
-	d.h = HEIGHT / 2;
 	if (!(d.mlx = mlx_init())
 			|| !(d.win = mlx_new_window(d.mlx, LENGTH, HEIGHT, av[1])))
 	{
@@ -58,7 +52,7 @@ int		zoom_proj_alt_mov(int key, t_data *data)
 	else if (key == 31)
 		data->color = (data->color == RED ? BLUE : data->color << 8);
 	else if (key == 32)
-	data->hud = (data->hud ? 0 : 1);
+		data->hud = (data->hud ? 0 : 1);
 	else if (key == 53)
 		exit(0);
 	mlx_clear_window(data->mlx, data->win);

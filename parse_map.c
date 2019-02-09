@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/08 07:42:57 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 07:28:28 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int		parse_map(char *s, t_data *data)
 	int		fd;
 	int		i;
 
+	data->proj = 1;
+	data->n = 1.0;
+	data->color = BLUE;
+	data->l = LENGTH / 2;
+	data->h = HEIGHT / 2;
 	i = 0;
 	if ((fd = open(s, O_RDONLY)) < 0)
 		return (0);
@@ -28,6 +33,7 @@ int		parse_map(char *s, t_data *data)
 		data->y_max++;
 	}
 	close(fd);
+	data->gap = LENGTH / (data->x_max * 2);
 	if (!get_map(data))
 		return (0);
 	return (1);
