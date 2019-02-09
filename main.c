@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 08:36:31 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 11:02:59 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,17 @@ void	set_hud(t_data *data)
 {
 	if (data->hud)
 	{
-		mlx_string_put(data->mlx, data->win, 0, 0, WHITE,
+		mlx_string_put(data->mlx, data->win, 10, 10, WHITE,
 				"change projection: P");
-		mlx_string_put(data->mlx, data->win, 0, 20, WHITE,
+		mlx_string_put(data->mlx, data->win, 10, 30, WHITE,
 				"zoom: arrow up,down");
-		mlx_string_put(data->mlx, data->win, 0, 40, WHITE,
+		mlx_string_put(data->mlx, data->win, 10, 50, WHITE,
 				"change altitude: arrow left,right");
-		mlx_string_put(data->mlx, data->win, 0, 60, WHITE,
+		mlx_string_put(data->mlx, data->win, 10, 70, WHITE,
 				"move map: J,K,L,I");
-		mlx_string_put(data->mlx, data->win, 0, 80, WHITE,
+		mlx_string_put(data->mlx, data->win, 10, 90, WHITE,
 				"change color: O");
-		mlx_string_put(data->mlx, data->win, 0, 100, WHITE,
+		mlx_string_put(data->mlx, data->win, 10, 110, WHITE,
 				"SHOW HUD: U");
 	}
 }

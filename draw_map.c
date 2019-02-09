@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 08:24:01 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 11:02:03 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	line(t_data *d, int l, int h, int z)
 	b.err = (b.dx > b.dy ? b.dx : -b.dy) / 2;
 	while (1)
 	{
-		if ((d->p.x == d->p.x1 && d->p.y == d->p.y1))
-			break ;
 		if (is_in_win(d->p, l, h))
 			d->img.s[d->p.x + l + ((d->p.y + h) * LENGTH)] = color(z, d);
+		if ((d->p.x == d->p.x1 && d->p.y == d->p.y1))
+			break ;
 		b.e2 = b.err;
 		if (b.e2 > -b.dx)
 		{
