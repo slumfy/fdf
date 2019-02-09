@@ -67,6 +67,7 @@ typedef struct	s_data
 	int		gap;
 	int		proj;
 	int		color;
+	int		hud;
 	double	n;
 	t_lst	*list;
 	int		**m;
@@ -76,7 +77,7 @@ typedef struct	s_data
 int				parse_map(char *s, t_data *data);
 int				get_map(t_data *data);
 int				fill_map(t_data *data);
-
+void				set_hud(t_data *data);
 int				zoom_proj_alt_mov(int key, t_data *data);
 int				close_button(t_data *data);
 int				is_in_win(t_point p, int l, int h);

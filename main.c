@@ -36,6 +36,7 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	draw_map(&d, d.l, d.h);
+	set_hud(&d);
 	mlx_hook(d.win, 2, 0, zoom_proj_alt_mov, &d);
 	mlx_hook(d.win, 17, 0, close_button, &d);
 	mlx_loop(d.mlx);
@@ -56,10 +57,13 @@ int		zoom_proj_alt_mov(int key, t_data *data)
 		data->l += (key == 37 ? 10 : -10);
 	else if (key == 31)
 		data->color = (data->color == RED ? BLUE : data->color << 8);
+	else if (key == 32)
+	data->hud = (data->hud ? 0 : 1);
 	else if (key == 53)
 		exit(0);
 	mlx_clear_window(data->mlx, data->win);
 	draw_map(data, data->l, data->h);
+	set_hud(data);
 	return (0);
 }
 
@@ -77,4 +81,23 @@ int		color(int z, t_data *data)
 		return (data->color);
 	}
 	return (0xFFFFFF);
+}
+
+void	set_hud(t_data *data)
+{
+	if (!data->hud)
+	{
+		mlx_string_put(data->mlx, data->win, 0, 0, WHITE,
+				"change projection: P");
+		mlx_string_put(data->mlx, data->win, 0, 20, WHITE,
+				"zoom: arrow up,down");
+		mlx_string_put(data->mlx, data->win, 0, 40, WHITE,
+				"change altitude: arrow left,right");
+		mlx_string_put(data->mlx, data->win, 0, 60, WHITE,
+				"move map: J,K,L,I");
+		mlx_string_put(data->mlx, data->win, 0, 80, WHITE,
+				"change color: O");
+		mlx_string_put(data->mlx, data->win, 0, 100, WHITE,
+				"SHOW HUD: U");
+	}
 }
