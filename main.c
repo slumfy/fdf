@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 11:02:59 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 13:34:32 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ int		main(int ac, char **av)
 	if (ac < 2)
 		return (write(1, "Usage: fdf [map]\n", 17) == 42);
 	if (!(parse_map(av[1], &d)))
-		return (write(2, "Error\n", 6) == 42);
+		return (write(2, "Parsing Error\n", 15) == 42);
 	if (!(d.mlx = mlx_init())
 			|| !(d.win = mlx_new_window(d.mlx, LENGTH, HEIGHT, av[1])))
-		return (write(2, "Error\n", 6) == 42);
+		return (write(2, "mlx Error\n", 10) == 42);
 	d.img.ptr = mlx_new_image(d.mlx, LENGTH, HEIGHT);
 	d.img.s = (int*)mlx_get_data_addr(d.img.ptr, &d.img.b, &d.img.l, &d.img.e);
+	if (d.x_max == 1 && d.y_max == 1)
+		line(&d, d.l, d.h, 0);
 	draw_map(&d, d.l, d.h);
 	mlx_put_image_to_window(d.mlx, d.win, d.img.ptr, 0, 0);
 	set_hud(&d);
@@ -53,6 +55,8 @@ int		zoom_proj_alt_mov(int key, t_data *data)
 	else if (key == 53)
 		exit(0);
 	ft_memset(data->img.s, 0, data->img.l * HEIGHT);
+	if (data->x_max == 1 && data->y_max == 1)
+		line(data, data->l, data->h, 0);
 	draw_map(data, data->l, data->h);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	set_hud(data);
