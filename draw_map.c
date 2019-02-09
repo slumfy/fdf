@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 04:44:08 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 11:02:03 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/09 11:22:40 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	draw_map(t_data *d, int l, int h)
 	s.y = -1;
 	while (++(s.y) < d->y_max)
 	{
-		s.x = 0;
-		while (s.x < d->x_max)
+		s.x = -1;
+		while (++(s.x) < d->x_max)
 		{
 			if (s.x + 1 < d->x_max)
 			{
@@ -36,7 +36,6 @@ void	draw_map(t_data *d, int l, int h)
 				proj(d, s);
 				line(d, l, h, (d->m[s.y][s.x] || d->m[s.y + 1][s.x] ? 1 : 0));
 			}
-			s.x++;
 		}
 	}
 }
