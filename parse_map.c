@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 08:48:42 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/11 10:32:12 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,13 @@ int		fill_map(t_data *data)
 	return (1);
 }
 
-t_lst	*ft_create_elem(char *data, size_t len)
+t_lst	*ft_create_elem(char *data)
 {
 	t_lst	*new;
 
 	if (!(new = (t_lst*)ft_memalloc(sizeof(t_lst))))
 		exit(0);
 	new->data = data;
-	new->len = len;
 	new->next = NULL;
 	return (new);
 }
@@ -115,8 +114,8 @@ void	ft_list_pushback(t_lst **begin_list, char *line)
 		tmp = *begin_list;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = ft_create_elem(line, ft_strlen(line));
+		tmp->next = ft_create_elem(line);
 	}
 	else
-		*begin_list = ft_create_elem(line, ft_strlen(line));
+		*begin_list = ft_create_elem(line);
 }

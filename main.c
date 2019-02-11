@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:14:23 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/09 13:34:32 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/02/11 10:50:42 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,26 @@ int		zoom_proj_alt_mov(int key, t_data *data)
 
 int		close_button(t_data *data)
 {
-	(void)data;
+	t_lst	*prev;
+	int		n;
+
+	n = 0;
+	prev = NULL;
+	while (data->list)
+	{
+		prev = data->list;
+		data->list = data->list->next;
+		ft_strdel(&prev->data);
+		free(prev);
+	}
+	while (n < data->y_max)
+	{
+		free(data->m[n]);
+		n++;
+	}
+	free(data->m);
+	mlx_destroy_image(data->mlx, data->img.ptr);
 	exit(0);
-	return (0);
 }
 
 int		color(int z, t_data *data)
