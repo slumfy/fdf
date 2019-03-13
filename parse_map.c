@@ -6,7 +6,7 @@
 /*   By: rvalenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 01:33:57 by rvalenti          #+#    #+#             */
-/*   Updated: 2019/02/11 10:32:12 by rvalenti         ###   ########.fr       */
+/*   Updated: 2019/03/13 08:34:17 by rvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int		parse_map(char *s, t_data *data)
 {
 	char	*line;
 	int		fd;
-	int		i;
 
 	data->x_max = -1;
 	data->y_max = 0;
-	i = 0;
 	if ((fd = open(s, O_RDONLY)) < 0)
 		return (0);
 	while (get_next_line(fd, &line) == 1)
